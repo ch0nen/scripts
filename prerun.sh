@@ -8,7 +8,7 @@ sudo apt update && sudo apt upgrade -y
 
 # Install zsh, wget, curl, and git if they're not already installed
 for package in zsh wget curl git; do
-    [ -x "$(command -v $package)" ] || sudo nala install $package -y
+    sudo nala install $package -y
 done
 
 # Change the default shell to zsh if it's not already zsh
