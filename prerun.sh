@@ -4,32 +4,11 @@
 sudo apt update && sudo apt upgrade -y
 
 # Check and install Nala if it's not installed
-if [ -x "$(command -v nala)" ]; then
-    echo "nala is installed and executable."
-else
-    echo "nala is not installed. Attempting to install..."
-    # Assuming you have sudo rights and apt is available
-    sudo apt update && sudo apt install -y nala
-    # Re-check if nala is now installed and executable
-    if [ -x "$(command -v nala)" ]; then
-        echo "nala successfully installed."
-    else
-        echo "Failed to install nala. Please check for errors."
-    fi
-fi
-
-
-# Replace apt with nala for the rest of the script
-alias apt=nala
+[ -x "$(command -v nala)" ] || sudo apt install nala -y
 
 # Install zsh, wget, curl, and git if they're not already installed
 for package in zsh wget curl git; do
-    if [ -x "$(command -v $package)" ]; then
-        echo "$package not found, installing..."
-        sudo apt install $package -y
-    else
-        echo "$package is already installed."
-    fi
+    [ -x "$(command -v $package)" ] || sudo nala install $package -y
 done
 
 # Change the default shell to zsh if it's not already zsh
